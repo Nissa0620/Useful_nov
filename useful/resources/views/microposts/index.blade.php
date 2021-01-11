@@ -2,20 +2,18 @@
 
 @section('content')
     @if (Auth::check())
-        <div class="row">
+        <div class="row mt-5">
             <aside class="col-sm-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">{{ Auth::user()->name }}</h3>
-                    </div>
-                    <div class="card-body">
+                    <div class="#">
                         {{-- 認証済みユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-                        <img class="rounded img-fluid" src="{{ Gravatar::get(Auth::user()->email, ['size' => 500]) }}" alt="">
+                        <img class="rounded-circle img-fluid border border-dark" src="{{ Gravatar::get(Auth::user()->email, ['size' => 500]) }}" alt="">
                     </div>
-                </div>
                 <div class="toukou">
                     {{--  投稿ページへのリンク --}}
                     {!! link_to_route('microposts.create', '投稿する', [], ['class' => 'btn btn-lg btn-primary']) !!}
+                </div>
+                <div class="edit">
+                    {!! link_to_route('users.edit', 'プロフィール編集', ['user' => Auth::user()->name], ['class' => 'btn btn-primary btn-lg mt-5']) !!}
                 </div>
             </aside>
             <div class="col-sm-8">
