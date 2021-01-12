@@ -6,11 +6,11 @@
             <aside class="col-sm-4">
                     <div class="#">
                         {{-- 認証済みユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-                        <img class="rounded-circle img-fluid border border-dark" src="{{ Gravatar::get(Auth::user()->email, ['size' => 500]) }}" alt="">
+                        <img class="rounded-circle img-fluid border border-dark" src="{{ Gravatar::get(Auth::user()->email, ['size' => 200]) }}" alt="">
                     </div>
                 <div class="toukou">
                     {{--  投稿ページへのリンク --}}
-                    {!! link_to_route('microposts.create', '投稿する', [], ['class' => 'btn btn-lg btn-primary']) !!}
+                    {!! link_to_route('microposts.create', '投稿する', [], ['class' => 'btn btn-lg btn-primary mt-5']) !!}
                 </div>
                 <div class="edit">
                     {!! link_to_route('users.edit', 'プロフィール編集', ['user' => Auth::user()->name], ['class' => 'btn btn-primary btn-lg mt-5']) !!}
@@ -18,6 +18,7 @@
             </aside>
             <div class="col-sm-8">
                 {{-- 投稿一覧 --}}
+                @include('microposts.cate_navtab')
                 @include('microposts.microposts')
             </div>
         </div>
