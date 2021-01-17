@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('css')
+    <link rel="stylesheet" href="./css/index/index.css">
+@endpush
 
 @section('content')
     @if (Auth::check())

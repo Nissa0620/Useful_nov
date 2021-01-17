@@ -16,45 +16,32 @@ class MicropostsController extends Controller
 
             if (isset($category_id)) {
                 $microposts = \App\Micropost::where('category_id', $category_id)->get();
-            }else{
-                $microposts = \App\Micropost::all();
+            } else {
+                $microposts = \App\Micropost::orderBy('created_at', 'desc')->get();
             }
+
+            /*if (isset($category_id) && isset($user_id)) {
+                $microposts = \App\Micropost::where('user_id', $user_id)->where('category_id', $category_id)->get();
+            }elseif(isset($category_id)) {
+                $microposts = \App\Micropost::where('category_id', $category_id)->get();
+            }elseif(isset($user_id)) {
+                $microposts = \App\Micropost::where('user_id', $user_id)->get();
+            }else {
+                $microposts = \App\Micropost::all();
+            }*/
+
+
 
             $data = [
             'microposts'=> $microposts,
             'categories' => $categories,
             ];
 
-
             return view('microposts.index', $data);
         } else {
             return view('welcome');
         }
     }
-
-     /*public function index(Request $request)
-    {
-        // 認証済みユーザ取得
-        $user = \Auth::user();
-        $categories = \App\Category::all();
-        $microposts = \App\Micropost::sortable();
-
-        $category_id = $request->input('category_id');
-
-
-        if (isset($category_id)) {
-            $microposts = \App\Micropost::sortable()->where('category_id', $category_id)->paginate(10);
-        }
-
-        $data = [
-            'user' => $user,
-            'microposts'=> $microposts,
-            'categories' => $categories,
-        ];
-
-
-        return view('microposts.index', $data);
-    }*/
 
     public function create()
     {
@@ -81,10 +68,14 @@ class MicropostsController extends Controller
         ]);
 
         $microposts = \App\Micropost::all();
+        $categories = \App\Category::all();
 
-        return view('microposts.index', [
-            'microposts' => $microposts
-        ]);
+        $data = [
+            'microposts'=> $microposts,
+            'categories' => $categories,
+            ];
+
+        return view('microposts.index', $data);
     }
 
     public function destroy($id)
@@ -98,9 +89,13 @@ class MicropostsController extends Controller
         }
 
         $microposts = \App\Micropost::all();
+        $categories = \App\Category::all();
 
-        return view('microposts.index', [
-            'microposts' => $microposts
-        ]);
+        $data = [
+            'microposts'=> $microposts,
+            'categories' => $categories,
+            ];
+
+        return view('microposts.index', $data);
     }
 }

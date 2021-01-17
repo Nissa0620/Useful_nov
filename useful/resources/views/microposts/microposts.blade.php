@@ -22,7 +22,7 @@
                         @if (Auth::id() == $micropost->user_id)
                             {{-- 投稿削除ボタンのフォーム --}}
                             {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                {!! Form::submit('削除', ['class' => 'btn btn-danger border-outline btn-sm']) !!}
                             {!! Form::close() !!}
                         @endif
                     </div>
@@ -36,7 +36,7 @@
                         <p>{!! nl2br(e($micropost->content)) !!}</p>
                     </div>
                     <div class="text-right mr-3">
-                        <span class="text-muted">投稿時間 {{ $micropost->created_at }}</span>
+                        <span class="text-muted">投稿時間：{{ $micropost->created_at }}</span>
                     </div>
                 </div>
             </li>

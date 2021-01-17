@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3>投稿作成ページ</h3>
+    <h3 class="mt-5 mb-4">投稿作成ページ</h3>
     {!! Form::open(['route' => 'microposts.store']) !!}
         <div class="form-check form-check-inline">
             {!! Form::radio('category_id', 1) !!}
@@ -23,11 +23,11 @@
             {!! Form::label('category_id', 'その他') !!}
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
             {!! Form::label('content', '内容') !!}
             {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '5']) !!}
         </div>
-        {!! Form::submit('投稿', ['class' => 'btn btn-primary']) !!}
+        {!! Form::submit('投稿', ['class' => 'btn btn-primary mt-2']) !!}
     {!! Form::close() !!}
 @endsection
 
